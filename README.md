@@ -2,6 +2,7 @@
 TP2 para tecnología y gestión web. 
 Se ha utilizado la API de Spotify para la realización de este proyecto, junto con un OAUTH para obtener el token con el que se hacen las consultas.
 En este proyecto podrá buscar las canciones que quiera mediante el buscador que trae consigo. Luego puede guardar las canciones a su BD dandole click a los carteles de las mismas.
+
 En las demás secciónes tendrá la opción de: 
 1- Realizar un ABM de Playlists y agregar las canciones guardadas a ellas.
 2- Visualizar y navegar a través de las Playlists creadas, pudiendo acceder a las canciones que tienen dentro a modo de carpeta.
