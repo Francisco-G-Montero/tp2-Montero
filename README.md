@@ -7,7 +7,9 @@ En este proyecto podrá buscar las canciones que quiera mediante el buscador que
 En las demás secciónes tendrá la opción de: 
 
 1- Realizar un ABM de Playlists y agregar las canciones guardadas a ellas.
+
 2- Visualizar y navegar a través de las Playlists creadas, pudiendo acceder a las canciones que tienen dentro a modo de carpeta.
+
 3- Visualizar en graficos los datos guardados en visión de proporcionar valor agregado al usuario acerca de sus preferencias (artistas preferidos, cant. canciones en playlist)
 
 
