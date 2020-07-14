@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+    <script type="text/javascript" src="script.js"></script>
+    
+    <script src="html/verPlaylists.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  </head>
+  <body>
+   <audio id="musicaBienvenida" src="music/welcome.mp3"></audio>
+    <aside>
+      <img src="img/logo.png" alt="" class="imgSide">
+      <ul>
+        <li id="canciones" onclick="ocultar(this.id);">Spotify API busqueda</li>
+        <li  id="ambPlaylist" onclick="ocultar(this.id);">ABM de una Playlist</li>
+        <li id="verPlaylistsCanciones" onclick="ocultar(this.id);">Ver Playlists y canciones</li>
+        <li id="verGraficos" onclick="ocultar(this.id);">Ver Gráficos</li>
+      </ul>
+      <div class="request-loader">
+        <img id="playButton" onclick="reproducir();" src="img/play_icon.png"></img>
+      </div>
+    </aside>
+    <section id="content" class="content">     
+      <header>
+        <form id="formBusqueda">
+          <input spellcheck="false" id="busquedaCancion" type="text" placeholder="Buscar...">
+          <button id="buscarLupa" onclick="getTracks()"><i class="fa fa-search"></i></button>
+        </form>
+      </header>
+
+
+      <div id="cancionesContainer" class="cancionesContainer">
+        <h2 style="color: rgb(145, 145, 145);">Para guardar la canción que le guste, solo hágale click al cartel</h2>
+        <div id="cancionasd" class="cancion">
+          <img src="img/check.png" class="check" hidden>
+          <img id="urlImagen" src="https://i.scdn.co/image/ff347680d9e62ccc144926377d4769b02a1024dc" alt="">
+          <span id="nombreArtista">ARTISTA</span>
+          <span class="track" id="nombreCancion">CANCION</span>
+        </div>
+      </div>
+
+      <div id="verPlaylistsCancionesContainer"></div>
+      <div id="ambPlaylistContainer" class="htmlContainer" style="box-shadow: 0 0 5px rgb(158, 158, 158);" hidden>
+        <div>
+        </div>
+      </div>
+
+      <div id="verGraficosContainer" class="htmlContainer" style="box-shadow: 0 0 5px rgb(158, 158, 158);" hidden>
+        <div>
+        </div>
+      </div>
+
+      <div class="guardadoContainer">
+        <span>La cancion ha sido guardada en la base de datos exitosamente</span>
+      </div>
+    </section>
+    <footer>      
+      <div></div>
+        <img src="img/logo.png" alt="" class="imgFooter">
+        <ul>
+          <li>   <span class="contacto">Contacto</span></li>
+          <li> <span class="email">francisco_gmontero@hotmail.com.ar</span></li>
+        </ul>
+        <span class="TyGWeb">    TyGWeb 2020   </span>
+    </footer>
+  </body>
+</html>

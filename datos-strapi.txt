@@ -1,0 +1,10 @@
+cancion:
+nombre => textfield
+artista => textfield
+imagen => textfield
+
+playlist:
+nombre => textfield
+imagen => textfield
+cancions => relation, 1 playlist muchas cancions
+

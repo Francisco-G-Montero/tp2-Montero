@@ -1,0 +1,4 @@
+app/
+db/
+backend/node_modules
+miweb/node/node_modules
