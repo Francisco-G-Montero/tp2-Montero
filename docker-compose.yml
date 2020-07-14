@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   db:
-    container_name: mysql
+    container_name: basedatos
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -37,7 +37,7 @@ services:
     build:
       dockerfile: Dockerfile-backend
       context: ./backend
-    container_name: backend
+    container_name: backendfgm
     expose:
     - 80
     ports:
