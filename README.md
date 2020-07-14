@@ -15,5 +15,6 @@ En las demás secciónes tendrá la opción de:
 
 
 Link de la página a modo de previsualización: (no funciona la base de datos con strapi)
+
 https://gallant-knuth-94f61b.netlify.app 
 
