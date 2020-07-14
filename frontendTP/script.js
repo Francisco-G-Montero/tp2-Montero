@@ -8,7 +8,7 @@ $(document).ready(function(){
     });
  
     audio=$("#musicaBienvenida")[0];
-    audio.volume=0.2;
+    audio.volume=0.15;
     audio.loop=true;
     $.ajax({
         url:'http://localhost:1337/auth/local',
