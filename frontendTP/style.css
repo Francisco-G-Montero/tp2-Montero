@@ -199,9 +199,14 @@ footer{
     
     box-shadow: 0 0 10px rgb(34, 158, 9);
 }
-#playButton{
+.play{
     height: 100px;
     width: 100px;
+    transition: all 0.2s;
+}
+.pause{
+    height: 50px;
+    width: 50px;
     transition: all 0.2s;
 }
 #playButton:hover{

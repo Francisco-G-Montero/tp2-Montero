@@ -27,8 +27,14 @@ $(document).ready(function(){
     });   
     getSpotifyToken();
 });
+var clase='pause play';
 function reproducir(){
-  audio.play();
+  swapClase=clase.split(" ");
+  $(".music").attr("src",`img/${swapClase[0]}_icon.png`);
+  $(".music").removeClass(swapClase[1]).addClass(swapClase[0]);
+  clase=swapClase.reverse().join(" ");
+  if (swapClase[0]=='pause') audio.pause();
+  else audio.play();
 }
 function ocultar(element_id){
   $("#content > header").css({"visibility":"hidden"});  
