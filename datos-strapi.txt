@@ -6,5 +6,5 @@ imagen => textfield
 playlist:
 nombre => textfield
 imagen => textfield
-cancions => relation, 1 playlist muchas cancions
+cancions => relation, Playlist has many Cancions
 

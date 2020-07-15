@@ -56,7 +56,7 @@ aside{
     display: inline-block;
     margin-right: 2px;
     text-align: center;
-    width: 350px;
+    width: 18.5%;
     height: 100%;
 }
 .content{
@@ -112,7 +112,7 @@ footer ul{
 }
 footer{ 
     margin-left: 19%;
-    height: 12rem;
+    height: 18%;
     display: inline-block;
     padding: 40px;
     width: 80%;
