@@ -16,7 +16,7 @@ function getPlaylists(){
                 urlImagen="http://localhost:1337"+datos[i].imagen;
                 html+=
                 `<div id="${i}" class="playlist" onclick="getPlaylistSongs(this.id,' ${nombrePlaylist}')">
-                <img id="imagen${i}" src="${urlImagen}" alt="">
+                <img id="imagen${i}" src="img/playlist.png" alt="">
                 <span class="track" id="nombre${i}">${nombrePlaylist}</span>
                 </div>`;
             }

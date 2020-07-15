@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   db:
-    container_name: basedatos
+    container_name: basedatosmontero
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -17,7 +17,7 @@ services:
       - ./db:/var/lib/mysql
 
   strapi:
-    container_name: strapi
+    container_name: strapimontero
     image: strapi/strapi:3.0.1-node10
     environment:
       - DATABASE_CLIENT=mysql
@@ -37,7 +37,7 @@ services:
     build:
       dockerfile: Dockerfile-backend
       context: ./backend
-    container_name: backendfgm
+    container_name: backendmontero
     expose:
     - 80
     ports:
