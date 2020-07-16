@@ -1,6 +1,8 @@
+var token='';
 $(document).ready(function () {
-    listarPlaylists();
-    getCanciones();
+    $(".guardadoContainer").hide();
+    getTokenStrapi();
+  
 });
 var playlistUrlImage='/uploads/playlist_6965112210.png';
 function listarPlaylists(){
@@ -10,6 +12,9 @@ function listarPlaylists(){
         type: "GET",
         url: "http://localhost:1337/playlists",
         dataType: "json",
+        headers:{
+            Authorization: `Bearer ${token}`
+          },
         success: function (data) {
             data.forEach(playlist => {
                 html+=`
@@ -34,7 +39,11 @@ function borrarPlaylist(playlist_id){
     $.ajax({
         type: "DELETE",
         url: `http://localhost:1337/playlists/${playlist_id}`,
+        headers:{
+            Authorization: `Bearer ${token}`
+          },
         success: function (response) {
+            guardadoExitoso();
             $(`#row${playlist_id}`).remove();
             $(`#option${playlist_id}`).remove();
         },error: function(err){
@@ -48,6 +57,9 @@ function getCanciones(){
         type: "GET",
         url: "http://localhost:1337/cancions/",
         dataType: "json",
+        headers:{
+            Authorization: `Bearer ${token}`
+          },
         success: function (data) {
             data.forEach(cancion => {
                 html+=`<option value="${cancion.id}">${cancion.nombre} ${cancion.artista}</option>`;
@@ -67,7 +79,11 @@ function crearPlaylist(){
                 nombre: nombre,
                 imagen: playlistUrlImage,
             },
+            headers:{
+                Authorization: `Bearer ${token}`
+              },
             success: function (playlist) {
+                guardadoExitoso();
                 var html=`
                 <tr id="row${playlist.id}">
                     <th scope="row">${playlist.id}</th>
@@ -96,12 +112,42 @@ function asignarCanciones(){
             type: "PUT",
             url: `http://localhost:1337/playlists/${playlist_id}`,
             data: datos,
+            headers:{
+                Authorization: `Bearer ${token}`
+              },
             success: function (data) {
+                guardadoExitoso();
                 $(`#cantidad${playlist_id}`).html(data.cancions.length);
                  console.log(data);
                  console.log(data.cancions.length)
             }
         });
     }
+}
+
+function guardadoExitoso(){
+    $(".guardadoContainer").slideDown();
+    setTimeout(() => {
+    $(".guardadoContainer").attr("bottom",$(window).height());
+    $(".guardadoContainer").slideUp();
+    }, 1500);
+  }
+function getTokenStrapi(){
+    $.ajax({
+      url:'http://localhost:1337/auth/local',
+      method:"post",
+      data:{
+          identifier: 'api-user@example.com',
+          password: '123456'
+      },
+      success:function(response){
+          token=response.jwt;
+          listarPlaylists();
+          getCanciones();
+      },
+      error:function (req,status,err){
+          console.log("error "+err);
   
+      }
+  });   
 }

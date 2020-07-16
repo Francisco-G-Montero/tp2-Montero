@@ -6,27 +6,33 @@ $(document).ready(function(){
       event.preventDefault();
           
     });
- 
     audio=$("#musicaBienvenida")[0];
     audio.volume=0.15;
     audio.loop=true;
-    $.ajax({
-        url:'http://localhost:1337/auth/local',
-        method:"post",
-        data:{
-            identifier: 'api-user@example.com',
-            password: '123456'
-        },
-        success:function(response){
-            token=response.jwt;
-        },
-        error:function (req,status,err){
-            console.log(err);
 
-        }
-    });   
+    getTokenStrapi();
     getSpotifyToken();
 });
+
+function getTokenStrapi(){
+  $.ajax({
+    url:'http://localhost:1337/auth/local',
+    method:"post",
+    data:{
+        identifier: 'api-user@example.com',
+        password: '123456'
+    },
+    success:function(response){
+        token=response.jwt;
+        console.log("token strapi"+token);
+    },
+    error:function (req,status,err){
+        console.log("error "+err);
+
+    }
+});   
+}
+
 var clase='pause play';
 function reproducir(){
   swapClase=clase.split(" ");
@@ -36,7 +42,8 @@ function reproducir(){
   if (swapClase[0]=='pause') audio.pause();
   else audio.play();
 }
-function ocultar(element_id){
+
+function mostrarContainer(element_id){
   $("#content > header").css({"visibility":"hidden"});  
   var id=element_id+"Container";
   $(`#${id}`).attr("hidden",false);
@@ -44,14 +51,12 @@ function ocultar(element_id){
   $("#content > div").each(function(){
     if ($(this).attr("id")!=id) $(this).attr("hidden",true);
   });
-  
   $("#verGraficosContainer").find("div object").remove()
   $("#ambPlaylistContainer").find("div object").remove()
   if(id=="verPlaylistsCancionesContainer"){
     getPlaylists();  
   }else if(id=="cancionesContainer"){
     $("#content > header").css({"visibility":"visible"});
-    getTracks();
   }else if( id=="verGraficosContainer"){
     $("#verGraficosContainer").find("div").append(`<object data="html/graficos.html" type=""></object>`);
   }else if(id=="ambPlaylistContainer"){
@@ -61,7 +66,6 @@ function ocultar(element_id){
 
 var client_id = '91e749990e824925b57821ae3f4c4001'; // Mi client id
 var client_secret = 'cb1a018daf454a3982f724ada821816b'; // Mi secret id
-
 var spotifyToken='';
 function getSpotifyToken(){
     var url = "https://accounts.spotify.com/api/token";
@@ -79,13 +83,14 @@ function getSpotifyToken(){
       }
     });
 } 
-  $("#busquedaCancion").keyup = function(e){
-    if (!e) e = window.event;
-    var keyCode = e.keyCode || e.which;
-    if (keyCode == '13'){
-      return false;
-    }
+$("#busquedaCancion").keyup = function(e){
+  if (!e) e = window.event;
+  var keyCode = e.keyCode || e.which;
+  if (keyCode == '13'){
+    return false;
   }
+}
+
 function getTracks(){
   var busqueda=$("#busquedaCancion").val();  
   console.log(busqueda);
@@ -141,11 +146,15 @@ function guardarCancion(id){
     type: "POST",
     url: "http://localhost:1337/cancions/",
     data: datos,
+    headers:{
+      Authorization: `Bearer ${token}`
+    },
     success: function (data) {
       guardadoExitoso(id);
     }
   });
 }
+
 function guardadoExitoso(cancion_id){
   $(`#${cancion_id}`).find(".check").attr("hidden",false);
   $(".guardadoContainer").slideDown();

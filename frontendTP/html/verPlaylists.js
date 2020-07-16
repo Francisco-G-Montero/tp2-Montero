@@ -4,6 +4,9 @@ function getPlaylists(){
         type: "get",
         url: "http://localhost:1337/playlists",
         dataType: "json",
+        headers:{
+            Authorization: `Bearer ${token}`
+          },
         success: function (datos) {
             song=[];
             console.log(datos);

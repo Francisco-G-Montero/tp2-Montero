@@ -14,10 +14,10 @@
     <aside>
       <img src="img/logo.png" alt="" class="imgSide">
       <ul>
-        <li id="canciones" onclick="ocultar(this.id);">Spotify API busqueda</li>
-        <li  id="ambPlaylist" onclick="ocultar(this.id);">ABM de una Playlist</li>
-        <li id="verPlaylistsCanciones" onclick="ocultar(this.id);">Ver Playlists y canciones</li>
-        <li id="verGraficos" onclick="ocultar(this.id);">Ver Gráficos</li>
+        <li id="canciones" onclick="mostrarContainer(this.id);">Spotify API busqueda</li>
+        <li  id="ambPlaylist" onclick="mostrarContainer(this.id);">ABM de una Playlist</li>
+        <li id="verPlaylistsCanciones" onclick="mostrarContainer(this.id);">Ver Playlists y canciones</li>
+        <li id="verGraficos" onclick="mostrarContainer(this.id);">Ver Gráficos</li>
       </ul>
       <div class="request-loader" onclick="reproducir();">
         <img class="music play"  src="img/play_icon.png"></img>
@@ -54,7 +54,7 @@
       </div>
 
       <div class="guardadoContainer">
-        <span>La cancion ha sido guardada en la base de datos exitosamente</span>
+        <span>Los cambios han sido guardados en la base de datos exitosamente</span>
       </div>
     </section>
     <footer>      

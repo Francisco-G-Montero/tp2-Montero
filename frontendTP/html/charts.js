@@ -1,10 +1,6 @@
 $(document).ready(function () {
     google.charts.load('current', {'packages':['bar','corechart']});
-   // google.charts.setOnLoadCallback(drawChartBar);
-   // google.charts.setOnLoadCallback(drawChartPie);
-    getPlaylists();
-    getCanciones();
-    
+    getTokenStrapi(); //llamo al token y en el success de ajax, a las funciones deseadas    
 });
 var flagBar=false;
 var flagPie=false;
@@ -15,6 +11,9 @@ function getPlaylists(){
         type: "get",
         url: "http://localhost:1337/playlists",
         dataType: "json",
+        headers:{
+            Authorization: `Bearer ${token}`
+          },
         success: function (response) {
             flagBar=true;
             datos=response;
@@ -29,6 +28,9 @@ function getCanciones(){
         type: "GET",
         url: "http://localhost:1337/cancions/",
         dataType: "json",
+        headers:{
+            Authorization: `Bearer ${token}`
+          },
         success: function (data) {
                 flagPie=true;
                 datosPie=data;
@@ -88,4 +90,25 @@ function drawChartPie() {
 
         chart2.draw(data, options);
     }
+  }
+
+var token='';
+function getTokenStrapi(){
+    $.ajax({
+      url:'http://localhost:1337/auth/local',
+      method:"post",
+      data:{
+          identifier: 'api-user@example.com',
+          password: '123456'
+      },
+      success:function(response){
+          token=response.jwt;
+          getPlaylists();
+        getCanciones();
+      },
+      error:function (req,status,err){
+          console.log("error "+err);
+  
+      }
+  });   
   }
